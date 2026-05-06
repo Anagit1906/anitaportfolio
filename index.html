@@ -1064,12 +1064,29 @@
     const reason    = form.querySelector('select').value;
     const message   = form.querySelector('textarea').value.trim();
 
-    if (!firstName || !email) {
+    // Phone validation
+    const phoneDigits = phone.replace(/\D/g, '');
+    const invalidPatterns = /^(\d)\1{8,}$/; // all same digit e.g. 9999999999, 0000000000
+    const phoneValid = phoneDigits.length >= 10 &&
+                       !invalidPatterns.test(phoneDigits) &&
+                       phoneDigits !== '1234567890' &&
+                       phoneDigits !== '0123456789';
+
+    if (!firstName || !email || !phone) {
       msg.style.display = 'block';
       msg.style.background = '#fef2f2';
       msg.style.color = '#991b1b';
       msg.style.border = '1px solid #fca5a5';
-      msg.textContent = 'Please fill in at least your name and email address.';
+      msg.textContent = 'Please fill in your name, email, and phone number.';
+      return;
+    }
+
+    if (!phoneValid) {
+      msg.style.display = 'block';
+      msg.style.background = '#fef2f2';
+      msg.style.color = '#991b1b';
+      msg.style.border = '1px solid #fca5a5';
+      msg.textContent = 'Please enter a valid phone number.';
       return;
     }
 
