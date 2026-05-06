@@ -1079,7 +1079,7 @@
 
     // Formspree endpoint — replace YOUR_FORM_ID with actual ID after signing up at formspree.io
     // For now, simulate a successful send after a brief delay
-    const FORMSPREE_ID = 'YOUR_FORM_ID';
+    const FORMSPREE_ID = 'xykojlpl';
 
     if (FORMSPREE_ID === 'YOUR_FORM_ID') {
       // Demo mode — show success without actual send
@@ -1096,7 +1096,7 @@
       return;
     }
 
-    fetch('https://formspree.io/f/' + xykojlpl, {
+    fetch('https://formspree.io/f/' + FORMSPREE_ID, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify({ firstName, lastName, email, phone, reason, message })
